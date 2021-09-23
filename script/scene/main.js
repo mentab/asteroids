@@ -5,33 +5,61 @@ export default function Main()
 {
 	const ship = k.add([
 		k.sprite("ship", 32),
-		k.pos(120, 80),
+		k.pos(320, 240),
 		k.area(),
 		k.origin("center"),
+		k.rotate(0),
 		{
-			dir: 0,
-			speed: 200,
+			speed: 0,
+			angle: 0,
+			isAccelerating: false,
+			rotatingDir: ''
 		},
 	]);
 
+	ship.action(() => {
+		if (ship.isAccelerating && ship.speed < 200) {
+			ship.speed += 100 * k.dt();
+		} else if (!ship.isAccelerating && ship.speed > 0) {
+			ship.speed -= 100 * k.dt();
+		}
+
+		if (ship.rotatingDir === 'right') {
+			ship.angle += 100 * k.dt();
+		} else if (ship.rotatingDir === 'left') {
+			ship.angle -= 100 * k.dt();
+		}
+
+		ship.move(k.dir(ship.angle - 90).scale(ship.speed));
+	});
+
 	k.keyDown("space", () => {
-		ship.move(k.dir(ship.dir).scale(ship.speed));
+		ship.isAccelerating = true;
+	});
+
+	k.keyRelease("space", () => {
+		ship.isAccelerating = false;
 	});
 
 	k.keyDown("left", () => {
-		// ship.dir++;
-		// ship.angle += 100 * k.dt();
+		ship.rotatingDir = 'left';
+	});
+
+	k.keyRelease("left", () => {
+		ship.rotatingDir = '';
 	});
 
 	k.keyDown("right", () => {
-		// ship.dir--;
-		// ship.angle += 100 * k.dt();
+		ship.rotatingDir = 'right';
+	});
+
+	k.keyRelease("right", () => {
+		ship.rotatingDir = '';
 	});
 
 	k.action(() => {
-		// k.scale = k.wave(-5, 5, k.time());
-		// ship.angle = k.time() * 60;
+
 	});
 
-	focus();
+	k.focus();
 };
