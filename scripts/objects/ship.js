@@ -1,5 +1,6 @@
 import { k } from './../kaboom.js';
 import input from './../input.js';
+import { handleOut } from './../events/out.js';
 
 export const createShip = () => {
 	const ship = k.add([
@@ -14,6 +15,7 @@ export const createShip = () => {
 			isAccelerating: false,
 			rotatingDir: ''
 		},
+		handleOut()
 	]);
 
 	ship.action(() => {

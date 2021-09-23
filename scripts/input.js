@@ -9,7 +9,6 @@ export default input;
 
 export const handleInputs = () => {
 	k.keyDown("space", () => {
-		console.log('ok');
 		input.isAccelerating = true;
 	});
 
