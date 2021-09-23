@@ -8,11 +8,11 @@ const input = {
 export default input;
 
 export const handleInputs = () => {
-	k.keyDown("space", () => {
+	k.keyDown("up", () => {
 		input.isAccelerating = true;
 	});
 
-	k.keyRelease("space", () => {
+	k.keyRelease("up", () => {
 		input.isAccelerating = false;
 	});
 
