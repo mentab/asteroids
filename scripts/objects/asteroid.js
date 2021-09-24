@@ -20,6 +20,8 @@ export const createLargeAsteroid = () => {
 		k.area(),
 		k.origin("center"),
 		k.rotate(0),
+		k.health(1),
+		"asteroid",
 		{
 			speed: 100,
 			angle: k.rand(0, 360),
