@@ -15,7 +15,7 @@ export const createShip = () => {
 			speed: 0,
 			angle: 0,
 			isAccelerating: false,
-			rotatingDir: ''
+			rotatingAngle: ''
 		},
 		handleOut()
 	]);
@@ -31,9 +31,9 @@ export const createShip = () => {
 			}
 		}
 
-		if (input.rotatingDir === 'right') {
+		if (input.rotatingAngle === 'right') {
 			ship.angle += 100 * k.dt();
-		} else if (input.rotatingDir === 'left') {
+		} else if (input.rotatingAngle === 'left') {
 			ship.angle -= 100 * k.dt();
 		}
 

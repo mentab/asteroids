@@ -2,7 +2,7 @@ import { k } from './kaboom.js';
 
 const input = {
 	isAccelerating: false,
-	rotatingDir: ''
+	rotatingAngle: ''
 };
 
 export default input;
@@ -17,18 +17,18 @@ export const handleInputs = () => {
 	});
 
 	k.keyDown("left", () => {
-		input.rotatingDir = 'left';
+		input.rotatingAngle = 'left';
 	});
 
 	k.keyRelease("left", () => {
-		input.rotatingDir = '';
+		input.rotatingAngle = '';
 	});
 
 	k.keyDown("right", () => {
-		input.rotatingDir = 'right';
+		input.rotatingAngle = 'right';
 	});
 
 	k.keyRelease("right", () => {
-		input.rotatingDir = '';
+		input.rotatingAngle = '';
 	});
 };
