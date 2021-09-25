@@ -34,4 +34,6 @@ export const createLargeAsteroid = () => {
 		asteroid.angle += 100 * k.dt();
 		asteroid.move(k.dir(asteroid.dir).scale(asteroid.speed));
 	});
+
+	return asteroid;
 }

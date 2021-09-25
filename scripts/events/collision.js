@@ -9,19 +9,17 @@ const handleAsteroidCollision = (asteroid, laser) => {
 };
 
 const handleShipHurt = (ship, asteroid) => {
-	console.log('ship hurt');
 };
 
 const handleAsteroidHurt = (asteroid, laser) => {
-	console.log('asteroid hurt');
 };
 
 const handleShipDeath = (ship, asteroid) => {
-	console.log('ship death');
+	ship.destroy();
 };
 
 const handleAsteroidDeath = (asteroid, laser) => {
-	console.log('asteroid death');
+	asteroid.destroy();
 };
 
 export const addCollisionEvents = () => {
