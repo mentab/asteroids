@@ -27,7 +27,8 @@ export const createLargeAsteroid = () => {
 			angle: k.rand(0, 360),
 			dir: k.rand(0, 360)
 		},
-		handleOut()
+		handleOut(),
+		k.area({ scale: .5 })
 	]);
 
 	asteroid.action(() => {

@@ -21,7 +21,8 @@ export const createShip = () => {
 			rotatingAngle: ''
 		},
 		handleOut(),
-		k.z(999)
+		k.z(999),
+		k.area({ scale: .25 })
 	]);
 
 	const handleMovementInputSpeed = () => {

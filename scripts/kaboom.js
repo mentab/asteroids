@@ -12,4 +12,4 @@ export const kaboomOptions = {
 export const k = kaboom(kaboomOptions);
 
 
-k.debug.inspect = true;
+// k.debug.inspect = true;

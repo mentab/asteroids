@@ -22,7 +22,7 @@ const handleShipDeath = (ship, asteroid) => {
 	ship.destroy();
 };
 
-const handleAsteroidDeath = (c, laser) => {
+const handleAsteroidDeath = (asteroid, laser) => {
 	asteroid.destroy();
 };
 
