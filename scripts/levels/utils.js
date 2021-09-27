@@ -2,8 +2,6 @@ import { k } from './../kaboom.js';
 import { createLargeAsteroid } from './../objects/asteroid.js';
 
 export const generateAsteroidWave = (waveLength) => {
-	console.log(waveLength);
-
 	return new Promise((resolve) => {
 		let spawner = [];
 		let killed = 0;

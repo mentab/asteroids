@@ -2,7 +2,8 @@ import { k } from './kaboom.js';
 
 const input = {
 	isAccelerating: false,
-	rotatingAngle: ''
+	rotatingAngle: '',
+	isShooting: false
 };
 
 export default input;
@@ -30,5 +31,13 @@ export const handleInputs = () => {
 
 	k.keyRelease("right", () => {
 		input.rotatingAngle = '';
+	});
+
+	k.keyPress("space", () => {
+		input.isShooting = true;
+	});
+
+	k.keyRelease("space", () => {
+		input.isShooting = false;
 	});
 };

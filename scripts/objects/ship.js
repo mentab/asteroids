@@ -1,6 +1,7 @@
 import { k } from './../kaboom.js';
 import input from './../input.js';
 import { handleOut } from './../events/out.js';
+import { createLaser } from './laser.js';
 
 const maxShipSpeed = 200;
 
@@ -19,7 +20,8 @@ export const createShip = () => {
 			isAccelerating: false,
 			rotatingAngle: ''
 		},
-		handleOut()
+		handleOut(),
+		k.z(999)
 	]);
 
 	const handleMovementInputSpeed = () => {
@@ -42,6 +44,13 @@ export const createShip = () => {
 		}
 	};
 
+
+	const handleMovementInputShooting = () => {
+		if (input.isShooting) {
+			createLaser(ship.pos, ship.angle);
+		}
+	};
+
 	const handleMoving = () => {
 		ship.move(k.dir(ship.angle - 90).scale(ship.speed));
 	};
@@ -49,6 +58,7 @@ export const createShip = () => {
 	ship.action(() => {
 		handleMovementInputSpeed();
 		handleMovementInputRotation();
+		handleMovementInputShooting();
 		handleMoving();
 	});
 }
