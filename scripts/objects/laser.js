@@ -2,19 +2,19 @@ import { k } from './../kaboom.js';
 import input from './../input.js';
 import { handleOut } from './../events/out.js';
 
-const bulletSpeed = 600;
+const bulletSpeed = 500;
 
-export const createLaser = (pos, angle) => {
+export const createLaser = (ship) => {
 	const laser = k.add([
-		k.sprite("effect_yellow", {width: 15}),
-		k.pos(pos.x, pos.y),
+		k.sprite("effect_yellow", {width: 15, height: 50}),
+		k.pos(ship.pos.x, ship.pos.y),
 		k.area(),
 		k.origin("center"),
-		k.rotate(angle),
+		k.rotate(ship.angle),
 		k.health(1),
 		k.cleanup(),
 		"laser",
-		k.move(angle - 90, bulletSpeed),
+		k.move(ship.angle - 90, bulletSpeed),
 		k.z(998)
 	]);
 }

@@ -4,6 +4,7 @@ import { handleOut } from './../events/out.js';
 import { createLaser } from './laser.js';
 
 const maxShipSpeed = 200;
+const delayBetweenShots = .25;
 
 export const createShip = () => {
 	const ship = k.add([
@@ -18,7 +19,8 @@ export const createShip = () => {
 			speed: 0,
 			angle: 0,
 			isAccelerating: false,
-			rotatingAngle: ''
+			rotatingAngle: '',
+			isShooting: false
 		},
 		handleOut(),
 		k.z(999),
@@ -26,7 +28,7 @@ export const createShip = () => {
 	]);
 
 	const handleMovementInputSpeed = () => {
-		if (input.isAccelerating && ship.speed < maxShipSpeed) {
+		if (input.isAccelerating && ship.speed < 200) {
 			ship.speed += 100 * k.dt();
 		} else if (!input.isAccelerating) {
 			if (ship.speed > 0) {
@@ -47,8 +49,12 @@ export const createShip = () => {
 
 
 	const handleMovementInputShooting = () => {
-		if (input.isShooting) {
-			createLaser(ship.pos, ship.angle);
+		if (input.isShooting && !ship.isShooting) {
+			createLaser({...ship});
+			ship.isShooting = true;
+			k.wait(delayBetweenShots, () => {
+				ship.isShooting = false;
+			});
 		}
 	};
 
