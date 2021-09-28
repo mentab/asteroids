@@ -2,6 +2,7 @@ import { k } from './../kaboom.js';
 import input from './../input.js';
 import { handleOut } from './../events/out.js';
 import { createLaser } from './laser.js';
+import { removeLives } from './../ui.js';
 
 const maxShipSpeed = 200;
 const delayBetweenShots = .25;
@@ -11,6 +12,7 @@ export const createShip = () => {
 		k.sprite("ship"),
 		k.pos(k.width() / 2, k.height() / 2),
 		k.area(),
+		k.layer("game"),
 		k.origin("center"),
 		k.rotate(0),
 		k.health(3),
@@ -27,7 +29,7 @@ export const createShip = () => {
 		k.area({ scale: .25 })
 	]);
 
-	const handleMovementInputSpeed = () => {
+	const handleSpeedInput = () => {
 		if (input.isAccelerating && ship.speed < 200) {
 			ship.speed += 100 * k.dt();
 		} else if (!input.isAccelerating) {
@@ -39,7 +41,7 @@ export const createShip = () => {
 		}
 	};
 
-	const handleMovementInputRotation = () => {
+	const handleRotationInput = () => {
 		if (input.rotatingAngle === 'right') {
 			ship.angle += 100 * k.dt();
 		} else if (input.rotatingAngle === 'left') {
@@ -48,7 +50,7 @@ export const createShip = () => {
 	};
 
 
-	const handleMovementInputShooting = () => {
+	const handleShootingInput = () => {
 		if (input.isShooting && !ship.isShooting) {
 			createLaser({...ship});
 			ship.isShooting = true;
@@ -63,9 +65,13 @@ export const createShip = () => {
 	};
 
 	ship.action(() => {
-		handleMovementInputSpeed();
-		handleMovementInputRotation();
-		handleMovementInputShooting();
+		handleSpeedInput();
+		handleRotationInput();
+		handleShootingInput();
 		handleMoving();
+	});
+
+	ship.on('hurt', () => {
+		removeLives();
 	});
 }

@@ -9,6 +9,7 @@ export const createLaser = (ship) => {
 		k.sprite("effect_yellow", {width: 15, height: 50}),
 		k.pos(ship.pos.x, ship.pos.y),
 		k.area(),
+		k.layer("game"),
 		k.origin("center"),
 		k.rotate(ship.angle),
 		k.health(1),

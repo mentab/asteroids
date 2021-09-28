@@ -1,6 +1,7 @@
 import { k } from './../kaboom.js';
 import input from './../input.js';
 import { handleOut } from './../events/out.js';
+import { addScore } from './../ui.js';
 
 const cornerMargin = 25;
 
@@ -18,6 +19,7 @@ export const createAsteroid = (size, pos) => {
 		k.sprite("asteroid_" + size),
 		k.pos(pos.x, pos.y),
 		k.area(),
+		k.layer("game"),
 		k.origin("center"),
 		k.rotate(0),
 		k.health(1),
@@ -38,6 +40,7 @@ export const createAsteroid = (size, pos) => {
 	});
 
 	asteroid.on('destroy', () => {
+		addScore();
 		if (asteroid.size === 'large') {
 			createAsteroid('small', asteroid.pos);
 			createAsteroid('small', asteroid.pos);
