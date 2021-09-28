@@ -11,12 +11,12 @@ const startingPos = [
 	k.vec2(k.rand(0 + cornerMargin, k.width() - cornerMargin), k.height())
 ];
 
-export const createLargeAsteroid = () => {
-	const randomPos = startingPos[Math.floor(Math.random() * startingPos.length)];
+export const createAsteroid = (size, pos) => {
+	pos = pos ?? startingPos[Math.floor(Math.random() * startingPos.length)];
 
 	const asteroid = k.add([
-		k.sprite("asteroid_large"),
-		k.pos(randomPos.x, randomPos.y),
+		k.sprite("asteroid_" + size),
+		k.pos(pos.x, pos.y),
 		k.area(),
 		k.origin("center"),
 		k.rotate(0),
@@ -25,7 +25,8 @@ export const createLargeAsteroid = () => {
 		{
 			speed: 100,
 			angle: k.rand(0, 360),
-			dir: k.rand(0, 360)
+			dir: k.rand(0, 360),
+			size: size
 		},
 		handleOut(),
 		k.area({ scale: .5 })
@@ -34,6 +35,13 @@ export const createLargeAsteroid = () => {
 	asteroid.action(() => {
 		asteroid.angle += 100 * k.dt();
 		asteroid.move(k.dir(asteroid.dir).scale(asteroid.speed));
+	});
+
+	asteroid.on('destroy', () => {
+		if (asteroid.size === 'large') {
+			createAsteroid('small', asteroid.pos);
+			createAsteroid('small', asteroid.pos);
+		}
 	});
 
 	return asteroid;
