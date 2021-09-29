@@ -2,9 +2,11 @@ import { k } from './../kaboom.js';
 import { addLayers } from "./../layers.js";
 import { handleInputs } from './../input.js';
 import { goToMainScene } from './utils.js';
+import { addBackgrounds } from './../layers.js';
 
 export const menu = () => {
 	addLayers();
+	addBackgrounds();
 	handleInputs();
 
 	k.add([

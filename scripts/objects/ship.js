@@ -2,6 +2,7 @@ import { k } from './../kaboom.js';
 import input from './../input.js';
 import { handleOut } from './../events/out.js';
 import { createLaser } from './laser.js';
+import { createTail } from './tail.js';
 import { removeLives } from './../ui.js';
 
 const maxShipSpeed = 200;
@@ -28,6 +29,8 @@ export const createShip = () => {
 		k.z(999),
 		k.area({ scale: .25 })
 	]);
+
+	createTail(ship);
 
 	const handleSpeedInput = () => {
 		if (input.isAccelerating && ship.speed < 200) {
@@ -69,6 +72,7 @@ export const createShip = () => {
 		handleRotationInput();
 		handleShootingInput();
 		handleMoving();
+		createTail(ship);
 	});
 
 	ship.on('hurt', () => {

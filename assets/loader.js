@@ -11,4 +11,8 @@ export const loadAssets = () => {
 	k.loadSprite("asteroid_square_detailed_large", "./assets/sprites/meteor_squareDetailedLarge.png");
 	k.loadSprite("asteroid_square_detailed_small", "./assets/sprites/meteor_squareDetailedSmall.png");
 	k.loadSprite("effect_yellow", "./assets/sprites/effect_yellow.png");
+	k.loadSprite("star_large", "./assets/sprites/star_large.png");
+	k.loadSprite("star_medium", "./assets/sprites/star_medium.png");
+	k.loadSprite("star_small", "./assets/sprites/star_small.png");
+	k.loadSprite("star_tiny", "./assets/sprites/star_tiny.png");
 }

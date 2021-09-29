@@ -28,14 +28,15 @@ export const createAsteroid = (size, pos) => {
 			speed: 100,
 			angle: k.rand(0, 360),
 			dir: k.rand(0, 360),
-			size: size
+			size: size,
+			rotationSpeed: k.rand(50, 150)
 		},
 		handleOut(),
 		k.area({ scale: .5 })
 	]);
 
 	asteroid.action(() => {
-		asteroid.angle += 100 * k.dt();
+		asteroid.angle += asteroid.rotationSpeed * k.dt();
 		asteroid.move(k.dir(asteroid.dir).scale(asteroid.speed));
 	});
 
