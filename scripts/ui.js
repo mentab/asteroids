@@ -41,12 +41,12 @@ export const addScore = () => {
 	ui.score.text = "Score:" + ui.score.value;
 };
 
-export const removeLives = (value) => {
+export const removeLives = () => {
 	ui.lives.value--;
 	ui.lives.text = "Lives:" + ui.lives.value;
 };
 
-export const setLevel = (value) => {
-	ui.level.value = value;
+export const addLevel = () => {
+	ui.level.value++;
 	ui.level.text = "Level:" + ui.level.value;
 };

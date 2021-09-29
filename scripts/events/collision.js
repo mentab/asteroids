@@ -20,6 +20,7 @@ const handleLaserHurt = (laser, asteroids) => {
 
 const handleShipDeath = (ship, asteroid) => {
 	ship.destroy();
+	k.go('death');
 };
 
 const handleAsteroidDeath = (asteroid, laser) => {

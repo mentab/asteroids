@@ -1,9 +1,8 @@
 import { k } from './kaboom.js';
-import { main } from './scenes/main.js';
+import { loadScenes } from './scenes/loader.js';
 import { loadAssets } from './../assets/loader.js';
 
-k.scene("main", main);
-
+loadScenes();
 loadAssets();
 
-k.go("main");
+k.go("menu");
