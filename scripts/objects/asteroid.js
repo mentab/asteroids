@@ -16,7 +16,7 @@ export const createAsteroid = (size, pos) => {
 	pos = pos ?? startingPos[Math.floor(Math.random() * startingPos.length)];
 
 	const asteroid = k.add([
-		k.sprite("asteroid_" + size),
+		k.sprite("asteroid_" + k.choose(['detailed_', 'square_', 'square_detailed_', '']) + size),
 		k.pos(pos.x, pos.y),
 		k.area(),
 		k.layer("game"),
