@@ -9,8 +9,6 @@ export const death = () => {
 	addBackgrounds();
 	handleInputs();
 
-	k.shake(120);
-
 	k.add([
 		k.text("Boom you dead", {size: 30}),
 		k.layer("ui"),

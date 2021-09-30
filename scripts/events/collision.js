@@ -1,7 +1,17 @@
 import { k } from './../kaboom.js';
+import { removeLives } from './../ui.js';
+import { addScore } from './../ui.js';
+import { createAsteroid } from './../objects/asteroid.js';
+import { addExplode } from './utils.js';
 
 const handleShipCollision = (ship, asteroid) => {
-	ship.hurt(1);
+	if (!ship.invulnerable) {
+		ship.hurt(1);
+		removeLives();
+		ship.invulnerable = true;
+		ship.color = k.rgb('255', '255', '255');
+		k.wait(1, () => ship.invulnerable = false);
+	}
 };
 
 const handleAsteroidCollision = (asteroid, laser) => {
@@ -10,9 +20,11 @@ const handleAsteroidCollision = (asteroid, laser) => {
 };
 
 const handleShipHurt = (ship, asteroid) => {
+	k.shake(20);
 };
 
 const handleAsteroidHurt = (asteroid, laser) => {
+	k.shake(5);
 };
 
 const handleLaserHurt = (laser, asteroids) => {
@@ -20,11 +32,18 @@ const handleLaserHurt = (laser, asteroids) => {
 
 const handleShipDeath = (ship, asteroid) => {
 	ship.destroy();
-	k.go('death');
+	addExplode(k.center(), 200, 200, 50);
+	k.wait(1, () => k.go('death'));
 };
 
 const handleAsteroidDeath = (asteroid, laser) => {
 	asteroid.destroy();
+	addScore();
+	addExplode(asteroid.pos, 20, 20, 10);
+	if (asteroid.size === 'large') {
+		createAsteroid('small', asteroid.pos);
+		createAsteroid('small', asteroid.pos);
+	}
 };
 
 const handleLaserDeath = (laser, asteroid) => {
@@ -41,3 +60,5 @@ export const addCollisionEvents = () => {
 	k.on("death", "asteroid", handleAsteroidDeath);
 	k.on("death", "laser", handleLaserDeath);
 };
+
+

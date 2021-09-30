@@ -3,7 +3,6 @@ import input from './../input.js';
 import { handleOut } from './../events/out.js';
 import { createLaser } from './laser.js';
 import { createTail } from './tail.js';
-import { removeLives } from './../ui.js';
 
 const maxShipSpeed = 200;
 const delayBetweenShots = .25;
@@ -23,7 +22,8 @@ export const createShip = () => {
 			angle: 0,
 			isAccelerating: false,
 			rotatingAngle: '',
-			isShooting: false
+			isShooting: false,
+			invulnerable: false
 		},
 		handleOut(),
 		k.z(999),
@@ -73,9 +73,5 @@ export const createShip = () => {
 		handleShootingInput();
 		handleMoving();
 		createTail(ship);
-	});
-
-	ship.on('hurt', () => {
-		removeLives();
 	});
 }

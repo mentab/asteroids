@@ -1,7 +1,6 @@
 import { k } from './../kaboom.js';
 import input from './../input.js';
 import { handleOut } from './../events/out.js';
-import { addScore } from './../ui.js';
 
 const cornerMargin = 25;
 
@@ -38,14 +37,6 @@ export const createAsteroid = (size, pos) => {
 	asteroid.action(() => {
 		asteroid.angle += asteroid.rotationSpeed * k.dt();
 		asteroid.move(k.dir(asteroid.dir).scale(asteroid.speed));
-	});
-
-	asteroid.on('destroy', () => {
-		addScore();
-		if (asteroid.size === 'large') {
-			createAsteroid('small', asteroid.pos);
-			createAsteroid('small', asteroid.pos);
-		}
 	});
 
 	return asteroid;

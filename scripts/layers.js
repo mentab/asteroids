@@ -9,9 +9,9 @@ export const addLayers = () => {
 };
 
 export const addBackgrounds = () => {
-	Array.from(Array(4)).forEach(() => addStar(k.rand(0, k.width())));
+	Array.from(Array(5)).forEach(() => addStar(k.rand(0, k.width())));
 
-	k.loop(1, () => {
+	k.loop(.75, () => {
 		addStar();
 	});
 };
