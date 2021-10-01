@@ -21,6 +21,7 @@ const handleAsteroidCollision = (asteroid, laser) => {
 
 const handleShipHurt = (ship, asteroid) => {
 	k.shake(20);
+	k.play("explosion_soft", { volume: .7 });
 };
 
 const handleAsteroidHurt = (asteroid, laser) => {
@@ -32,12 +33,15 @@ const handleLaserHurt = (laser, asteroids) => {
 
 const handleShipDeath = (ship, asteroid) => {
 	ship.destroy();
+	ship.sound.stop();
+	k.play("explosion_hard", { volume: .8 });
 	addExplode(k.center(), 200, 200, 50);
 	k.wait(1, () => k.go('death'));
 };
 
 const handleAsteroidDeath = (asteroid, laser) => {
 	asteroid.destroy();
+	k.play("explosion_soft", { volume: .6 });
 	addScore();
 	addExplode(asteroid.pos, 20, 20, 10);
 	if (asteroid.size === 'large') {

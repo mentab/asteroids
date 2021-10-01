@@ -16,6 +16,16 @@ export const createLaser = (ship) => {
 		k.cleanup(),
 		"laser",
 		k.move(ship.angle - 90, bulletSpeed),
-		k.z(998)
+		k.z(998),
+		{
+			hasSpawn: false
+		}
 	]);
+
+	laser.action(() => {
+		if (!laser.hasSpawn) {
+			k.play("laser", { volume: .6 });
+			laser.hasSpawn = true;
+		}
+	});
 }

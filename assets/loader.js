@@ -15,4 +15,8 @@ export const loadAssets = () => {
 	k.loadSprite("star_medium", "./assets/sprites/star_medium.png");
 	k.loadSprite("star_small", "./assets/sprites/star_small.png");
 	k.loadSprite("star_tiny", "./assets/sprites/star_tiny.png");
+	k.loadSound("explosion_soft", "./assets/sounds/sfx_exp_shortest_soft7.wav");
+	k.loadSound("explosion_hard", "./assets/sounds/sfx_exp_shortest_hard5.wav");
+	k.loadSound("laser", "./assets/sounds/sfx_wpn_laser8.wav");
+	k.loadSound("vehicle", "./assets/sounds/sfx_vehicle_plainloop.wav");
 }

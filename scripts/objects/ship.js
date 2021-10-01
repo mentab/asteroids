@@ -23,17 +23,19 @@ export const createShip = () => {
 			isAccelerating: false,
 			rotatingAngle: '',
 			isShooting: false,
-			invulnerable: false
+			invulnerable: false,
+			sound: k.play("vehicle", {
+				volume: .2,
+				loop: true
+			})
 		},
 		handleOut(),
 		k.z(999),
 		k.area({ scale: .25 })
 	]);
 
-	createTail(ship);
-
 	const handleSpeedInput = () => {
-		if (input.isAccelerating && ship.speed < 200) {
+		if (input.isAccelerating && ship.speed < maxShipSpeed) {
 			ship.speed += 100 * k.dt();
 		} else if (!input.isAccelerating) {
 			if (ship.speed > 0) {
@@ -67,11 +69,16 @@ export const createShip = () => {
 		ship.move(k.dir(ship.angle - 90).scale(ship.speed));
 	};
 
+	const handleSound = () => {
+		ship.sound.detune(ship.speed * 4 - maxShipSpeed * 2);
+	};
+
 	ship.action(() => {
 		handleSpeedInput();
 		handleRotationInput();
 		handleShootingInput();
 		handleMoving();
 		createTail(ship);
+		handleSound();
 	});
 }
