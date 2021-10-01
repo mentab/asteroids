@@ -6,10 +6,7 @@ export const kaboomOptions = {
 	width: config.width,
 	height: config.height,
 	clearColor: [ 32, 33, 37 ],
-	debug: true
+	debug: false
 };
 
 export const k = kaboom(kaboomOptions);
-
-
-// k.debug.inspect = true;
